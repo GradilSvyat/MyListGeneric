@@ -22,6 +22,34 @@ namespace MyListGeneric
 
             count++;
         }
+        public bool Remove (T data)
+        {
+            MyClassGeneric<T> current = head;
+            MyClassGeneric<T> previous = null;
+            while (current != null)
+            {
+                if (current.Data.Equals(data))
+                {
+                    if (previous != null)
+                    {
+                        previous.Next = current.Next;
+                        if (current.Next == null)
+                            tail = previous;
+                    }
+                    else
+                    {
+                        head = head.Next;
+                        if (head == null)
+                            tail = null;
+                    }
+                    count--;
+                    return true;
+                }
+                previous = current;
+                current = current.Next;
+            }
+            return false;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
