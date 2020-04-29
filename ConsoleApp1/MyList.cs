@@ -50,6 +50,34 @@ namespace MyListGeneric
             }
             return false;
         }
+        public int Count { get { return count; } }
+        public bool IsEmpty { get { return count == 0; } }
+        public void Clear()
+        {
+            head = null;
+            tail = null;
+            count = 0;
+        }
+        public bool Contains(T data)
+        {
+            MyClassGeneric<T> current = head;
+            while (current != null)
+            {
+                if (current.Data.Equals(data))
+                    return true;
+                current = current.Next;
+            }
+            return false;
+        }
+        public void AppendFirst(T data)
+        {
+            MyClassGeneric<T> node = new MyClassGeneric<T> (data);
+            node.Next = head;
+            head = node;
+            if (count == 0)
+                tail = head;
+            count++;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
