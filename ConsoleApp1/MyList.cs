@@ -53,12 +53,17 @@ namespace MyListGeneric
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            MyClassGeneric<T> current = head;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable)this).GetEnumerator();
         }
     }
 }
